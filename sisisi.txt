@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Getting Clients IP</title>
+	<style>
+	p, h1 {
+		color: blue;
+	}
+	</style>
+
+	<script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+	</script>
+	
+	<script>
+	// Create a set to store IP addresses
+	var ipSet = new Set();
+	
+	// Function to update the IP address and count
+	function updateIPAddress() {
+		$.getJSON("https://api.ipify.org?format=json", function(data) {
+			// Get the IP address
+			var ipAddress = data.ip;
+			
+			// Add the IP address to the set
+			ipSet.add(ipAddress);
+			
+			// Update the count
+			$("#count").html(ipSet.size);
+			
+			// Set the IP address
+			$("#gfg").html(ipAddress);
+		});
+	}
+	
+	// Call the function initially to get the IP address
+	updateIPAddress();
+	</script>
+</head>
+
+<body>
+	<center>
+		<h1>Avi's website</h1>
+		<h3>Public IP Address of user is:</h3>
+		<p id="gfg"></p>
+		<p>Number of unique IP addresses: <span id="count">1</span></p>
+	</center>
+</body>
+
+</html>
